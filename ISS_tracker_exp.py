@@ -4,7 +4,7 @@ from twilio.rest import Client
 twilio_sid = "YOUR TWILIO_SID"
 twilio_auth_token = "YOUR TWILIO_AUTH_TOKEN"
 from_no = "whatsapp:+14155238886"
-to_no = "whatsapp:+917818870589"
+to_no = "whatsapp:+91xxxxxxxxxx"
 
 def send_whatsapp_alert(lat,lon):
     try:

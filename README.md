@@ -95,7 +95,7 @@ Both scripts use Twilio credentials to send WhatsApp messages. Update the follow
 twilio_sid = "your_twilio_account_sid"
 twilio_auth_token = "your_twilio_auth_token"
 from_no = "whatsapp:+14155238886"  # Twilio sandbox number
-to_no = "whatsapp:+917818870589"    # Your WhatsApp number
+to_no = "whatsapp:+91xxxxxxxxxx"    # Your WhatsApp number
 ```
 
 Modify the default coordinates in the main function:

@@ -10,7 +10,7 @@ Both scripts use the **Open-Notify API** to fetch real-time ISS coordinates and 
 
 ## 📁 Files
 
-### 1. **project_1.py** (Recommended for Production ⭐)
+### 1. **ISS_tracker.py** (Recommended for Production ⭐)
 
 This is the **efficient and sustainable** version of the ISS alert system.
 
@@ -31,7 +31,7 @@ This is the **efficient and sustainable** version of the ISS alert system.
 
 ---
 
-### 2. **not_close_alert.py** (Learning & Experimental Only ⚠️)
+### 2. **ISS_tracker_exp.py** (Learning & Experimental Only ⚠️)
 
 This script is designed for **learning purposes** and **experimental exploration** of the Twilio API.
 

@@ -8,6 +8,16 @@ Both scripts use the **Open-Notify API** to fetch real-time ISS coordinates and 
 
 ---
 
+## 🔒 Security & Privacy
+
+**Important Security Guidelines:**
+- Replace placeholder values in the code with your actual credentials before running
+- Never commit credentials to version control
+- Use environment variables or `.env` files for sensitive data in production
+- Keep your Twilio SID and Auth Token confidential
+
+---
+
 ## 📁 Files
 
 ### 1. **ISS_tracker.py** (Recommended for Production ⭐)
@@ -27,7 +37,7 @@ This is the **efficient and sustainable** version of the ISS alert system.
 ✅ Production-ready with user confirmation  
 ✅ Most resource-efficient approach
 
-**Default Location:** Mathura, India (28.6279°N, 79.8042°E)
+**Default Location:** Pilibhit, India (28.6279°N, 79.8042°E)
 
 ---
 
@@ -71,34 +81,43 @@ This script is designed for **learning purposes** and **experimental exploration
 pip install requests twilio
 ```
 
-### Running project_1.py (Recommended)
+### Running ISS_tracker_exp.py (Recommended)
 ```bash
-python project_1.py
+python ISS_tracker_exp.py
 ```
 The script will ask for confirmation before starting:
 ```
 Are you sure you want to run the ISS overhead alert script? (y/n): y
 ```
 
-### Running not_close_alert.py (For Learning Only)
+### Running ISS_tracker.py (For Learning Only)
 ```bash
-python not_close_alert.py
+python ISS_tracker.py
 ```
 
 ---
 
 ## 🔑 Configuration
 
-Both scripts use Twilio credentials to send WhatsApp messages. Update the following variables if needed:
+### Step 1: Add Your Twilio Credentials
+
+Update the following variables in both scripts with your actual Twilio account details:
 
 ```python
-twilio_sid = "your_twilio_account_sid"
-twilio_auth_token = "your_twilio_auth_token"
-from_no = "whatsapp:+14155238886"  # Twilio sandbox number
-to_no = "whatsapp:+91xxxxxxxxxx"    # Your WhatsApp number
+twilio_sid = "YOUR_TWILIO_SID"              # Replace with your Account SID from Twilio Dashboard
+twilio_auth_token = "YOUR_TWILIO_AUTH_TOKEN"  # Replace with your Auth Token from Twilio Dashboard
+from_no = "whatsapp:+14155238886"           # Twilio sandbox number (or your verified Twilio number)
+to_no = "whatsapp:+91xxxxxxxxxx"            # Replace with your actual WhatsApp number
 ```
 
-Modify the default coordinates in the main function:
+**How to find your credentials:**
+1. Log in to [Twilio Console](https://www.twilio.com/console)
+2. Copy your Account SID and Auth Token from the main dashboard
+3. Replace `YOUR_TWILIO_SID` and `YOUR_TWILIO_AUTH_TOKEN` in both Python files
+
+### Step 2: Update Location (Optional)
+
+Modify the default coordinates in the main function to track your location:
 ```python
 is_iss_overhead(latitude, longitude)
 ```
@@ -107,7 +126,7 @@ is_iss_overhead(latitude, longitude)
 
 ## 📊 Comparison
 
-| Feature | project_1.py | not_close_alert.py |
+| Feature | ISS_tracker.py | ISS_tracker_exp.py |
 |---------|--------------|-------------------|
 | **Purpose** | Production tracking | Learning & Testing |
 | **Messages Sent** | Only when ISS overhead | Every 10 seconds (continuously) |
@@ -121,9 +140,9 @@ is_iss_overhead(latitude, longitude)
 
 ## 🎯 Recommendation
 
-**Use `project_1.py`** for actual ISS tracking and alerts. It is optimized for long-term use while respecting Twilio's free-tier limitations. This version will sustain your Twilio free access account.
+**Use `ISS_tracekr.py`** for actual ISS tracking and alerts. It is optimized for long-term use while respecting Twilio's free-tier limitations. This version will sustain your Twilio free access account.
 
-Reserve `not_close_alert.py` for:
+Reserve `ISS_tracker_exp.py` for:
 - Testing Twilio API integration
 - Learning WhatsApp message sending
 - Experimenting with alert logic and adaptive sleep intervals
@@ -133,7 +152,7 @@ Reserve `not_close_alert.py` for:
 
 ## 📍 ISS Coordinates
 
-The default location is set to **Mathura, India** (28.6279°N, 79.8042°E). You can change this to your location by passing custom coordinates to the function:
+The default location is set to **Pilibhit, India** (28.6279°N, 79.8042°E). You can change this to your location by passing custom coordinates to the function:
 
 ```python
 is_iss_overhead(my_lat, my_lon)
@@ -158,7 +177,7 @@ is_iss_overhead(my_lat, my_lon)
 
 1. **Keep credentials private:** Never commit your Twilio SID and Auth Token to version control
 2. **Twilio sandbox:** The default numbers are Twilio sandbox numbers. To use personal numbers, verify them first
-3. **Free tier limits:** Monitor your Twilio usage to avoid unexpected charges. `not_close_alert.py` will consume tokens rapidly and is not recommended for long-term monitoring
+3. **Free tier limits:** Monitor your Twilio usage to avoid unexpected charges. `ISS_tracker_exp.py` will consume tokens rapidly and is not recommended for long-term monitoring
 4. **ISS proximity threshold:** Set to 5° in both latitude and longitude (roughly 500+ km), adjustable in the code
 
 ---

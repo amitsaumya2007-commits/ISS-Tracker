@@ -1,8 +1,9 @@
 import time 
 import requests 
 from twilio.rest import Client
-twilio_sid = "YOUR TWILIO_SID"
-twilio_auth_token = "YOUR TWILIO_AUTH_TOKEN"
+from ISS_tracker import save_iss_location
+twilio_sid = "YOUR_TWILIO_SID"
+twilio_auth_token = "YOUR_TWILIO_AUTH_TOKEN"
 from_no = "whatsapp:+14155238886"
 to_no = "whatsapp:+91xxxxxxxxxx"
 
@@ -43,6 +44,7 @@ def is_iss_overhead(my_lat=28.627,my_lon = 79.8042 ):
                     if not already_sent:
                         send_whatsapp_alert(iss_lat,iss_lon)
                         already_sent = True
+                        save_iss_location(iss_lat, iss_lon)
                     else:
                         print((f"[{time.strftime('%H:%M:%S')}] ISS is overhead, but alert was already sent for this pass."))
                     sleeptime = 5  # Wait for 5 seconds before checking again

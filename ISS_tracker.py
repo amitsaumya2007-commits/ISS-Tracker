@@ -1,8 +1,9 @@
 import time 
 import requests 
 from twilio.rest import Client
-twilio_sid = "YOUR TWILIO_SID"
-twilio_auth_token = "YOUR TWILIO_AUTH_TOKEN"
+import csv
+twilio_sid = "YOUR_TWILIO_SID"
+twilio_auth_token = "YOUR_TWILIO_AUTH_TOKEN"
 from_no = "whatsapp:+14155238886"
 to_no = "whatsapp:+91xxxxxxxxxx"
 
@@ -33,6 +34,7 @@ def is_iss_overhead(my_lat=28.627,my_lon = 79.8042 ):
                     if not already_sent:
                         send_whatsapp_alert(iss_lat,iss_lon)
                         already_sent = True
+                        save_iss_location(iss_lat, iss_lon)
                     else:
                         print((f"[{time.strftime('%H:%M:%S')}] ISS is overhead, but alert was already sent for this pass."))
                 else:
@@ -47,6 +49,18 @@ def is_iss_overhead(my_lat=28.627,my_lon = 79.8042 ):
         
         time.sleep(10)
 
+def save_iss_location(s_lat, s_lon):
+    with open("iss_entry.csv", mode="a", newline="") as entry:
+        writer = csv.DictWriter(entry, fieldnames=["Location", "Time"])
+        
+        # Optional: If the file is empty, you might want to write headers, 
+        # but for a simple append, this writes the row:
+        writer.writerow({
+            "Location": f"{s_lat}, {s_lon}", 
+            "Time": time.strftime('%Y-%m-%d %H:%M:%S')
+        })
+    print(f"[{time.strftime('%H:%M:%S')}] Logged overhead location to CSV.")
+    
 if __name__ == "__main__":
     is_iss_overhead(28.6279,79.8042)
 

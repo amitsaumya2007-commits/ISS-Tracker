@@ -1,15 +1,19 @@
 import time 
 import requests 
+import os
 from twilio.rest import Client
+from dotenv import load_dotenv
 from ISS_tracker import save_iss_location
+load_dotenv()
 twilio_sid = "YOUR_TWILIO_SID"
-twilio_auth_token = "YOUR_TWILIO_AUTH_TOKEN"
+account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
 from_no = "whatsapp:+14155238886"
-to_no = "whatsapp:+91xxxxxxxxxx"
+to_no = f"whatsapp:{os.environ.get("NUMBER")}"
 
 def send_whatsapp_alert(lat,lon):
     try:
-        client = Client(twilio_sid,twilio_auth_token)
+        client = Client(account_sid, auth_token)
         message_body = f"🚀 LOOK UP! The ISS is passing directly over you right now!\n🛰️ Current Location: ({lat}, {lon})"
         message = client.messages.create(body = message_body, from_ = from_no, to = to_no)
         print(f"[{time.strftime('%H:%M:%S')}] WhatsApp alert sent successfully! SID: {message.sid}")
@@ -18,7 +22,7 @@ def send_whatsapp_alert(lat,lon):
 
 def not_overhead_alert(lat,lon):
     try:
-        client = Client(twilio_sid,twilio_auth_token)
+        client = Client(account_sid, auth_token)
         message_body = f" Current Location location of ISS: ({lat}, {lon}, not close to you.)"
         message = client.messages.create(body = message_body, from_ = from_no, to = to_no)
         print(f"[{time.strftime('%H:%M:%S')}] WhatsApp alert sent successfully! SID: {message.sid}")
